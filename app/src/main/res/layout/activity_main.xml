@@ -23,7 +23,7 @@
             android:id="@+id/imageView5"
             android:layout_width="match_parent"
             android:layout_height="473dp"
-            app:srcCompat="@drawable/Imagen" />
+            app:srcCompat="@drawable/imagen" />
 
         <Button
             android:id="@+id/button"
