@@ -23,10 +23,7 @@ public class MainActivity extends AppCompatActivity {
         addEvents();
 
     }
-    private void initViews(){
-        buttonStart = findViewById(R.id.bottom);
 
-    }
 
     private void addEvents(){
         buttonStart.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(listIntent);
             }
         });
+
+
+    }
+    private void initViews(){
+        buttonStart = findViewById(R.id.button);
 
     }
     @Override
