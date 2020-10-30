@@ -9,11 +9,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class DictionaryActivity extends AppCompatActivity {
-    private List<modelWords> items = new ArrayList<>();
+    static List<modelWords> items = new ArrayList<>();
+    static List<modelWords> palabras;
+    static int tamanoAlfabeto = 26;
     private Context context;
 
     private ListView taskListView;
@@ -50,6 +58,84 @@ public class DictionaryActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    static class Nodo {
+        Map<Character, Nodo> hijos;
+        boolean FinDePalabra;
+        modelWords modelo;
+
+        Nodo(String name, String descripcion) {
+            FinDePalabra = false;
+            hijos = new HashMap<>();
+            if (FinDePalabra) {
+                modelo = new modelWords(items.size(), name, descripcion);
+            }
+        }
+    }
+
+    static Nodo raiz;
+
+    static void agregarPalabra(modelWords palabra) {
+        Nodo nodoActual = raiz;
+        int letras = palabra.getName().length();
+        for (int i = 0; i < letras; i++) {
+            if (nodoActual.hijos.containsKey(palabra.getName().charAt(i))) {
+                nodoActual = nodoActual.hijos.get(palabra.getName().charAt(i));
+            } else {
+                nodoActual.hijos.put(palabra.getName().charAt(i),
+                        new Nodo(palabra.getName(), palabra.getDescription()));
+                nodoActual = nodoActual.hijos.get(palabra.getName().charAt(i));
+            }
+        }
+        nodoActual.FinDePalabra = true;
+        nodoActual.modelo = new modelWords(palabra.getId(), palabra.getName(), palabra.getDescription());
+        items.add(nodoActual.modelo);
+    }
+
+    static void busqueda(String palabra) {
+        int letras = palabra.length();
+        Nodo nodoActual = raiz;
+        for (int i = 0; i < letras; i++) {
+            if (nodoActual.hijos.containsKey(palabra.charAt(i))) {
+                nodoActual = nodoActual.hijos.get(palabra.charAt(i));
+            } else {
+                return;
+            }
+        }
+        dfs(nodoActual);
+    }
+
+    static void dfs(Nodo nodoActual) {
+        if (nodoActual.modelo != null && !palabras.contains(nodoActual.modelo)) {
+            palabras.add(nodoActual.modelo);
+        }
+        if (nodoActual.hijos.isEmpty()) {
+            return;
+        } else {
+            Object[] nodosHijos = nodoActual.hijos.values().toArray();
+            for (int i = 0; i < nodoActual.hijos.size(); i++) {
+                dfs((Nodo) nodosHijos[i]);
+            }
+        }
+    }
+
+    static void borrarPalabra(String palabra) {
+        int letras = palabra.length();
+        Nodo nodoActual = raiz;
+        for (int i = 0; i < letras; i++) {
+            char caracter = palabra.charAt(i);
+            if (!nodoActual.hijos.containsKey(caracter)) {
+                break;
+            } else {
+                nodoActual = nodoActual.hijos.get(caracter);
+            }
+        }
+        if (nodoActual.FinDePalabra) {
+            items.remove(items.indexOf(nodoActual.modelo));
+            nodoActual.FinDePalabra = false;
+            nodoActual.modelo = null;
+        }
     }
 
     private void fillWords() {
