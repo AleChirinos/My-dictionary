@@ -29,7 +29,8 @@
             android:gravity="start"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            android:textColor="#ffff"
+            android:textColor="#dbdedf"
+            android:layout_marginLeft="30dp"
             android:inputType="textMultiLine" />
         <TextView
             android:id="@+id/textView2"
@@ -47,7 +48,8 @@
             android:gravity="start"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            android:textColor="#ffff"
+            android:textColor="#dbdedf"
+            android:layout_marginLeft="30dp"
             android:inputType="textMultiLine" />
 
         <Button
