@@ -19,9 +19,20 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="50"
-            android:textColor="#000"
-            android:background="#3f51b5"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/boton"
+            android:textColor="#ffff"
             android:text="Añadir Palabra" />
+
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/boton"
+            android:textColor="#ffff"
+            android:text="Borrar Palabra" />
     </LinearLayout>
 
     <LinearLayout

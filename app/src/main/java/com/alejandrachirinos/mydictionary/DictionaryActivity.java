@@ -3,6 +3,7 @@ package com.alejandrachirinos.mydictionary;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,7 @@ public class DictionaryActivity extends AppCompatActivity {
 
     private ListView taskListView;
     private Button addButton;
+    private Button deleteButton;
     private Button searchButton;
     private EditText wordEditText;
 
@@ -43,6 +45,7 @@ public class DictionaryActivity extends AppCompatActivity {
 
     private void initViews() {
         addButton = findViewById(R.id.addButton);
+        deleteButton=findViewById(R.id.deleteButton);
         searchButton = findViewById(R.id.searchButton);
         wordEditText = findViewById((R.id.wordEditText));
         taskListView = findViewById(R.id.taskListView);
@@ -56,6 +59,16 @@ public class DictionaryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 items.add(new modelWords(items.size(), "Nombre", "Significado"));
                 adapter.notifyDataSetChanged();
+                Intent addIntent = new Intent(DictionaryActivity.this, AgregarPalabraActivity.class);
+                startActivity(addIntent);
+
+            }
+        });
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent deleteIntent = new Intent(DictionaryActivity.this, EliminarPalabraActivity.class);
+                startActivity(deleteIntent);
             }
         });
     }
