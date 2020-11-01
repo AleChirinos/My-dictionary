@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,9 +24,9 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DictionaryActivity extends AppCompatActivity {
+public class DictionaryActivity extends AppCompatActivity{
     static List<modelWords> items = new ArrayList<>();
-    static List<modelWords> palabras;
+    static ArrayList<modelWords> palabras = new ArrayList<>();
     static int tamanoAlfabeto = 26;
 
     private Context context;
@@ -42,6 +44,7 @@ public class DictionaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         context = this;
         setContentView(R.layout.activity_dictionary);
+
         initViews();
         addEvents();
         fillWords();
@@ -82,11 +85,17 @@ public class DictionaryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String guardarPalabra = wordEditText.getText().toString();
                 busqueda(guardarPalabra);
-                adapter = new WordAdapter(context, palabras);
-                Intent searchIntent = new Intent(DictionaryActivity.this, ListaDePalabras.class);
-                String userString = new Gson().toJson(palabras);
-                searchIntent.putExtra(Constants.INTENT_KEY_USER, userString);
-                startActivity(searchIntent);
+                Intent intent = new Intent(DictionaryActivity.this, ListaDePalabras.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("mylist", palabras);
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+
+                //Intent searchIntent = new Intent(DictionaryActivity.this, ListaDePalabras.class);
+                //String userString = new Gson().toJson(palabras);
+                //searchIntent.putExtra(Constants.INTENT_KEY_USER, userString);
+                //startActivity(searchIntent);
             }
         });
     }
@@ -171,18 +180,18 @@ public class DictionaryActivity extends AppCompatActivity {
     }
 
     private void fillWords() {
-        agregarPalabra(new modelWords(items.size(), "Abuhado", "Aquellas personas quienes tienen una apariencia que recuerda a la de un búho o ave similar."));
-        agregarPalabra(new modelWords(items.size(), "Acecinar", "Acto de salar las carnes y ponerlas al aire. Acción de convertir un producto cárnico en cecina."));
-        agregarPalabra(new modelWords(items.size(), "Agigolado", "Adjetivo, típico de la provincia de Segovia, que se usa para describir aquel a quien, al realizar algo con un poco de esfuerzo, siente que se ahoga y percibe una presión en el pecho."));
-        agregarPalabra(new modelWords(items.size(), "Bonhomía", "Afabilidad, sencillez, bondad y honradez en el carácter."));
-        agregarPalabra(new modelWords(items.size(), "Cagaprisas", "Persona que es impaciente, quien tiene prisa siempre."));
-        agregarPalabra(new modelWords(items.size(), "Entronque", "Relación de parentesco entre personas quienes comparten un tronco del linaje en común."));
-        agregarPalabra(new modelWords(items.size(), "Inmarcesible", "Dicho de un vegetal que no puede marchitarse."));
-        agregarPalabra(new modelWords(items.size(), " Isagoge", "Introducción, preámbulo."));
-        agregarPalabra(new modelWords(items.size(), " Jerapellina", "Vestido viejo y andrajoso, pieza de tela que no puede dar más de sí."));
-        agregarPalabra(new modelWords(items.size(), " Jipiar", "Gemir, hipar, gimotear. También significa cantar con voz semejante a la de un gemido."));
-        agregarPalabra(new modelWords(items.size(), " Joyel", "Joya pequeña."));
-        agregarPalabra(new modelWords(items.size(), " Limerencia", "Locura de amor. Estado mental involuntario en el que la atracción de un persona hacia la otra le impide pensar de forma racional."));
-        agregarPalabra(new modelWords(items.size(), " Melifluo", "Sonido excesivamente dulce, suave o delicado."));
+        agregarPalabra(new modelWords(items.size(), "abuhado", "Aquellas personas quienes tienen una apariencia que recuerda a la de un búho o ave similar."));
+        agregarPalabra(new modelWords(items.size(), "acecinar", "Acto de salar las carnes y ponerlas al aire. Acción de convertir un producto cárnico en cecina."));
+        agregarPalabra(new modelWords(items.size(), "agigolado", "Adjetivo, típico de la provincia de Segovia, que se usa para describir aquel a quien, al realizar algo con un poco de esfuerzo, siente que se ahoga y percibe una presión en el pecho."));
+        agregarPalabra(new modelWords(items.size(), "bonhomía", "Afabilidad, sencillez, bondad y honradez en el carácter."));
+        agregarPalabra(new modelWords(items.size(), "cagaprisas", "Persona que es impaciente, quien tiene prisa siempre."));
+        agregarPalabra(new modelWords(items.size(), "entronque", "Relación de parentesco entre personas quienes comparten un tronco del linaje en común."));
+        agregarPalabra(new modelWords(items.size(), "inmarcesible", "Dicho de un vegetal que no puede marchitarse."));
+        agregarPalabra(new modelWords(items.size(), "isagoge", "Introducción, preámbulo."));
+        agregarPalabra(new modelWords(items.size(), "jerapellina", "Vestido viejo y andrajoso, pieza de tela que no puede dar más de sí."));
+        agregarPalabra(new modelWords(items.size(), "jipiar", "Gemir, hipar, gimotear. También significa cantar con voz semejante a la de un gemido."));
+        agregarPalabra(new modelWords(items.size(), "joyel", "Joya pequeña."));
+        agregarPalabra(new modelWords(items.size(), "limerencia", "Locura de amor. Estado mental involuntario en el que la atracción de un persona hacia la otra le impide pensar de forma racional."));
+        agregarPalabra(new modelWords(items.size(), "melifluo", "Sonido excesivamente dulce, suave o delicado."));
     }
 }

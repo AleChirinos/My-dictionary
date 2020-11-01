@@ -40,7 +40,9 @@ public class ListaDePalabras extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         context = this;
         setContentView(R.layout.activity_dictionary2);
-        receiveValues();
+        Bundle bundle = getIntent().getExtras();
+        palabras = bundle.getParcelableArrayList("mylist");
+        //receiveValues();
         initViews();
        // addEvents();
         fillWords();
@@ -68,11 +70,14 @@ public class ListaDePalabras extends AppCompatActivity {
         }
 
     private void receiveValues() {
-        Intent intent = getIntent();
-        if (intent.hasExtra(Constants.INTENT_KEY_USER)) {
-            String userObj = intent.getStringExtra(Constants.INTENT_KEY_USER);
-             palabras  = new Gson().fromJson(userObj, ArrayList.class);
-        }
+        //Intent intent = getIntent();
+        //if (intent.hasExtra(Constants.INTENT_KEY_USER)) {
+           // String userObj = intent.getStringExtra(Constants.INTENT_KEY_USER);
+             //palabras  = new Gson().fromJson(userObj, ArrayList.class);
+        //}
+        Intent data = null;
+        Bundle objetoRecibido = data.getExtras();
+        palabras = (List<modelWords>) objetoRecibido.getSerializable("proyecto");
     }
 
         static class Nodo {
