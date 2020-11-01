@@ -45,7 +45,6 @@ public class ListaDePalabras extends AppCompatActivity {
         //receiveValues();
         initViews();
        // addEvents();
-        fillWords();
     }
 
         private void initViews() {
@@ -158,20 +157,5 @@ public class ListaDePalabras extends AppCompatActivity {
         }
     }
 
-    private void fillWords() {
-        items.add(new modelWords(items.size(), "Abuhado", "Aquellas personas quienes tienen una apariencia que recuerda a la de un búho o ave similar."));
-        items.add(new modelWords(items.size(), "Acecinar", "Acto de salar las carnes y ponerlas al aire. Acción de convertir un producto cárnico en cecina."));
-        items.add(new modelWords(items.size(), "Agigolado", "Adjetivo, típico de la provincia de Segovia, que se usa para describir aquel a quien, al realizar algo con un poco de esfuerzo, siente que se ahoga y percibe una presión en el pecho."));
-        items.add(new modelWords(items.size(), "Bonhomía", "Afabilidad, sencillez, bondad y honradez en el carácter."));
-        items.add(new modelWords(items.size(), "Cagaprisas", "Persona que es impaciente, quien tiene prisa siempre."));
-        items.add(new modelWords(items.size(), "Entronque", "Relación de parentesco entre personas quienes comparten un tronco del linaje en común."));
-        items.add(new modelWords(items.size(), "Inmarcesible", "Dicho de un vegetal que no puede marchitarse."));
-        items.add(new modelWords(items.size(), " Isagoge", "Introducción, preámbulo."));
-        items.add(new modelWords(items.size(), " Jerapellina", "Vestido viejo y andrajoso, pieza de tela que no puede dar más de sí."));
-        items.add(new modelWords(items.size(), " Jipiar", "Gemir, hipar, gimotear. También significa cantar con voz semejante a la de un gemido."));
-        items.add(new modelWords(items.size(), " Joyel", "Joya pequeña."));
-        items.add(new modelWords(items.size(), " Limerencia", "Locura de amor. Estado mental involuntario en el que la atracción de un persona hacia la otra le impide pensar de forma racional."));
-        items.add(new modelWords(items.size(), " Melifluo", "Sonido excesivamente dulce, suave o delicado."));
-    }
-    }
+}
 

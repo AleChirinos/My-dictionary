@@ -44,10 +44,17 @@ public class DictionaryActivity extends AppCompatActivity{
         context = this;
         setContentView(R.layout.activity_dictionary);
         ArrayList<modelWords> agregar = new ArrayList<>();
+        ArrayList<modelWords> eliminar = new ArrayList<>();
         Bundle bundle = getIntent().getExtras();
         if(bundle != null) {
             agregar = bundle.getParcelableArrayList("palabras");
-            agregarPalabra(agregar.get(0));
+            eliminar = bundle.getParcelableArrayList("delete");
+            if(agregar != null){
+                agregarPalabra(agregar.get(0));
+            }
+            if(eliminar!= null){
+                borrarPalabra(eliminar.get(0).getName());
+            }
             initViews();
             addEvents();
         }else {
@@ -71,8 +78,6 @@ public class DictionaryActivity extends AppCompatActivity{
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                items.add(new modelWords(items.size(), "Nombre", "Significado"));
-                adapter.notifyDataSetChanged();
                 Intent addIntent = new Intent(DictionaryActivity.this, AgregarPalabraActivity.class);
                 startActivity(addIntent);
 
