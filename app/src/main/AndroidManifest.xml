@@ -12,6 +12,7 @@
         <activity android:name=".EliminarPalabraActivity"></activity>
         <activity android:name=".AgregarPalabraActivity" />
         <activity android:name=".DictionaryActivity" />
+        <activity android:name=".ListaDePalabras" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
