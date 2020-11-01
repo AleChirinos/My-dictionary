@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-//hola
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -27,7 +26,7 @@ import java.util.List;
 public class DictionaryActivity extends AppCompatActivity{
     static List<modelWords> items = new ArrayList<>();
     static ArrayList<modelWords> palabras = new ArrayList<>();
-    static int tamanoAlfabeto = 26;
+    static ArrayList<modelWords> agregar;
 
     private Context context;
 
@@ -44,10 +43,18 @@ public class DictionaryActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         context = this;
         setContentView(R.layout.activity_dictionary);
-
-        initViews();
-        addEvents();
-        fillWords();
+        ArrayList<modelWords> agregar = new ArrayList<>();
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null) {
+            agregar = bundle.getParcelableArrayList("palabras");
+            agregarPalabra(agregar.get(0));
+            initViews();
+            addEvents();
+        }else {
+            initViews();
+            addEvents();
+            fillWords();
+        }
     }
 
     private void initViews() {
@@ -180,18 +187,18 @@ public class DictionaryActivity extends AppCompatActivity{
     }
 
     private void fillWords() {
-        agregarPalabra(new modelWords(items.size(), "abuhado", "Aquellas personas quienes tienen una apariencia que recuerda a la de un búho o ave similar."));
-        agregarPalabra(new modelWords(items.size(), "acecinar", "Acto de salar las carnes y ponerlas al aire. Acción de convertir un producto cárnico en cecina."));
-        agregarPalabra(new modelWords(items.size(), "agigolado", "Adjetivo, típico de la provincia de Segovia, que se usa para describir aquel a quien, al realizar algo con un poco de esfuerzo, siente que se ahoga y percibe una presión en el pecho."));
-        agregarPalabra(new modelWords(items.size(), "bonhomía", "Afabilidad, sencillez, bondad y honradez en el carácter."));
-        agregarPalabra(new modelWords(items.size(), "cagaprisas", "Persona que es impaciente, quien tiene prisa siempre."));
-        agregarPalabra(new modelWords(items.size(), "entronque", "Relación de parentesco entre personas quienes comparten un tronco del linaje en común."));
-        agregarPalabra(new modelWords(items.size(), "inmarcesible", "Dicho de un vegetal que no puede marchitarse."));
-        agregarPalabra(new modelWords(items.size(), "isagoge", "Introducción, preámbulo."));
-        agregarPalabra(new modelWords(items.size(), "jerapellina", "Vestido viejo y andrajoso, pieza de tela que no puede dar más de sí."));
-        agregarPalabra(new modelWords(items.size(), "jipiar", "Gemir, hipar, gimotear. También significa cantar con voz semejante a la de un gemido."));
-        agregarPalabra(new modelWords(items.size(), "joyel", "Joya pequeña."));
-        agregarPalabra(new modelWords(items.size(), "limerencia", "Locura de amor. Estado mental involuntario en el que la atracción de un persona hacia la otra le impide pensar de forma racional."));
-        agregarPalabra(new modelWords(items.size(), "melifluo", "Sonido excesivamente dulce, suave o delicado."));
+        agregarPalabra(new modelWords(items.size(), "Abuhado", "Aquellas personas quienes tienen una apariencia que recuerda a la de un búho o ave similar."));
+        agregarPalabra(new modelWords(items.size(), "Acecinar", "Acto de salar las carnes y ponerlas al aire. Acción de convertir un producto cárnico en cecina."));
+        agregarPalabra(new modelWords(items.size(), "Agigolado", "Adjetivo, típico de la provincia de Segovia, que se usa para describir aquel a quien, al realizar algo con un poco de esfuerzo, siente que se ahoga y percibe una presión en el pecho."));
+        agregarPalabra(new modelWords(items.size(), "Bonhomía", "Afabilidad, sencillez, bondad y honradez en el carácter."));
+        agregarPalabra(new modelWords(items.size(), "Cagaprisas", "Persona que es impaciente, quien tiene prisa siempre."));
+        agregarPalabra(new modelWords(items.size(), "Entronque", "Relación de parentesco entre personas quienes comparten un tronco del linaje en común."));
+        agregarPalabra(new modelWords(items.size(), "Inmarcesible", "Dicho de un vegetal que no puede marchitarse."));
+        agregarPalabra(new modelWords(items.size(), "Isagoge", "Introducción, preámbulo."));
+        agregarPalabra(new modelWords(items.size(), "Jerapellina", "Vestido viejo y andrajoso, pieza de tela que no puede dar más de sí."));
+        agregarPalabra(new modelWords(items.size(), "Jipiar", "Gemir, hipar, gimotear. También significa cantar con voz semejante a la de un gemido."));
+        agregarPalabra(new modelWords(items.size(), "Joyel", "Joya pequeña."));
+        agregarPalabra(new modelWords(items.size(), "Limerencia", "Locura de amor. Estado mental involuntario en el que la atracción de un persona hacia la otra le impide pensar de forma racional."));
+        agregarPalabra(new modelWords(items.size(), "Melifluo", "Sonido excesivamente dulce, suave o delicado."));
     }
 }
