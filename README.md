@@ -19,4 +19,5 @@ This application is related to a dictionary.
 ### Android
 
 1. Create an android phone emulator in android studio or connect an android phone
+2. Select the branch: Final 
 2. Click on 'Run app'
